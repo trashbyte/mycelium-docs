@@ -1,0 +1,1 @@
+Publishes to https://trashbyte.io/singularity/.
