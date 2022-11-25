@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Overview</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<main>
+		<h1>Singularity Overview</h1>
+
+		<h2>Networking</h2>
+
+		<h3>Server Structure</h3>
+
+		<p>A server makes up a node on the network. A server is modular by design, and is comprised mainly of three parts: the keyring manager, a set of providers, and a set of adapters.</p>
+
+		<div class="center"><img src="img/server-structure.svg"></div>
+
+		<p>The keyring manager is a service that maintains the keyrings for each persona. Each keyring consists of a keypair for the persona, a colleciton of endorsements, and a mapping of key signatures to public keys and endorsements, used to authenticate other users.</p>
+
+		<p>Providers are services that provide the core, protocol-agnostic functionality of a server.</p>
+
+		<p>Adapters are interfaces that providers can use to communicate with the world. A provider may register routes with any number of supported adapters. Each adapter runs only a single instance, which is needed for, e.g. all TCP/UDP services using the same port (80).</p>
+	</main>
+</body>
+</html>

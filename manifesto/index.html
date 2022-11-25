@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Singularity Manifesto</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;1,400&family=IBM+Plex+Sans:wght@300&display=swap" rel="stylesheet">
+	<style>
+		body, html {
+			background: #222;
+		}
+		* {
+			color: #ddd;
+		}
+		main {
+			max-width: 900px;
+			margin: 75px auto;
+		}
+		h1, h2, h3 { font-family: "IBM Plex Sans", "Noto Sans", "Fira Sans", "Arial", sans-serif; }
+		h1 {
+			text-align: center;
+			font-size: 32pt;
+			margin-bottom: 3rem;
+		}
+		h2 { font-size: 26pt; }
+		h3 { font-size: 20pt; }
+		hr, h2 { margin-top: 3rem; }
+		p, li {
+			font-size: 14pt;
+			font-family: "Work Sans", "Nunito Sans", "IBM Plex Sans", "Noto Sans", "Fira Sans", "Arial", sans-serif;
+		}
+	</style>
+</head>
+<body>
+<main>
+<h1>Singularity Manifesto</h1>
+
+<p>tl;dr: Singularity is a decentralized, peer-to-peer network where users have control over their own security and privacy.</p>
+
+<hr>
+
+<h2>What Singularity Is</h2>
+
+<h3>A full network stack for decentralized social networks</h3>
+
+<p>Singularity is an integrated collection of technologies supporting peer-to-peer networking and social interaction. It includes a networking layer for host resolution, update propagation, and user discovery. It includes an extensible set of actions and content types for publishing and sharing content of all shapes and sizes.</p>
+
+<h3>Self-hosted, user-controlled</h3>
+
+<p>Singularity hosts are software that runs directly on users' devices. No shared &quot;instances&quot; are needed. However, communal "relays" are available and encouraged for forming communities. These relays help distribute updates throughout the network, and aid in user discovery. Relays will be an important part of a real-world implementation, but shouldn't be necessary for the network to function. No centralization means that even if relays have issues or become unavailable, users can still see and communicate with each other. Networks and connections can be maintained without relying on any centralized authority. Additionally, media is stored and transmitted in the abstract, and the aggregation, organization, and presentation of that content is controlled by the publisher in their spaces, and by the viewer in their spaces.</p>
+
+<h3>Cryptographic keypair as an isolated, nomadic identity</h3>
+
+<p>A user's identity as represented in Singularity is called a Persona. A Persona is defined by a public-private keypair, and uniquely identified in the network by the public key. Unique usernames are unnecessary. A Persona is completely decoupled from real-life identity, although a user may choose to make that connection themselves. Users may have multiple Personas and use them separately.</p>
+
+<h3>Completely decentralized and protocol-agnostic</h3>
+
+<p>Singularity is decentralized not only in terms of network structure, but also in terms of infrastructure. Singularity's primary transport layer and reference implementation will use TCP/IP for connectivity, but specifications can be defined for any protocol, supporting alternative and off-grid networks. Network node resolution is based primarily on key fingerprints, not DNS hostnames, although DNS will be a necessary evil for a widely-usable network.</p>
+
+<h3>Modular and thoroughly extensible</h3>
+
+<p>Singularity follows a modular and extensible design philosophy similar to that employed by XMPP. The core specification will be minimal and exact, and designed for the addition of arbitrary extensions. These extensions, when well-specified, will form the bulk of Singularity's functionality. The Singularity working group will be responsible for accepting submissions for new extensions via an RFC-style process, as well as providing and maintaining the formal specifications for all approved extensions. A particular focus is placed on support for any and all types of media - writing, art, music, videos, live streams, and so on - and Singularity applications are expected to handle unsupported media in a sane, user-visible, and configurable manner.</p>
+
+<h3>Secure, capability-based, and defensively-designed</h3>
+
+<p>Singularity uses modern cryptography, including compact and quantum-resistant elliptic curve algorithms, with strictly no use of weak or compromised ciphers. Singularity is based on a capability model, where all actions must be authorized by the creator, providing simple and versatile access control and preventing leaked information and confusing or misleading content visibility. All network transactions are cryptographically verifiable to prevent impersonation. Network features are explicitly designed with bad actors in mind, with focus on safety, privacy, and reliability. Encrypted private messages should be available, although full E2E encryption is not currently a design goal (beyond TLS).</p>
+
+<h3>(Reasonably) user-friendly</h3>
+
+<p>Eventually, installation should be as simple as running an installer and making some guided choices about what kind of experience the user wants. Minimal technical knowledge should be necessary, although initially it will likely be a requirement until the UX is improved. A large part of this user-friendliness will lie in the domain of frontend applications (see below) but Singularity must be designed with a reasonable user experience in mind.</p>
+
+<hr>
+
+<h2>What Singularity Isn't</h2>
+
+<h3>A web app</h3>
+
+<p>Web frontends are an obvious necessity for user-friendly network platforms, and Singularity will certainly have them. However, Singularity itself does not specify a singular frontend interface, and anyone is welcome to create their own implementation that communicates with the network.</p>
+
+<h3>Anonymous</h3>
+
+<p>While the separation between real-life user and Persona is key, <em>anonymity</em> isn't. This means that actions are tied to Personas and users are accountable for their actions.</p>
+
+<h3>A replacement for [insert platform here]</h3>
+
+<p>Singularity is designed to allow maximum interoperability with existing services, which helps provide a smooth transition for users, and doesn't require anyone to abandon their social groups or support networks.</p>
+
+<h3>A tool designed for users without access to technology</h3>
+
+<p>As a fundamentally digital system, there are many problems Singularity cannot solve. Although it pains me to admit, helping some of the groups most in need of protection is outside the scope of Singularity, simply because it requires access to technology.</p>
+
+<hr>
+
+<h2>Interested?</h2>
+
+<p>If this sounds like something you'd like to use, please spread this around so more folks can see it. If you have any advice, or concerns, please let us know! If you want to get involved, tell us about that too. We're actively looking for help from folks who are knowledgable about distributed systems, cryptography, social media dynamics among marginalized or disabled communities, or basically anything else that would be helpful for this project.</p>
+
+<ul>
+	<li>trashbyte | <a href="https://chitter.xyz/@byte" target="_blank">https://chitter.xyz/@byte</a> | <a href="https://twitter.com/trashbyte" target="_blank">https://twitter.com/trashbyte</a> | <a href="https://trashbyte.io" target="_blank">https://trashbyte.io</a></li>
+	<li>Kasran | <a href="https://awoo.space/@typhlosion" target="_blank">https://awoo.space/@typhlosion</a> | <a href="https://twitter.com/bakphooon" target="_blank">https://twitter.com/bakphooon</a>
+</ul>
+
+</main>
+</body>
+</html>
