@@ -1,0 +1,48 @@
+{{1:Keys and Fingerprints}}
+
+{{2:Fingerprints}}
+
+<p>Key fingerprints are compact identifiers that can be liberally attached to messages and media with minimal usage of bandwidth or storage. Fingerprints are calculated from a public key using SHA3-512/192, that is, hashed using the SHA-3 hashing algorithm with an output size of 512 bits, which is then truncated to 192 bits. These fingerprints are commonly represented by a string of 32 Base64 characters, e.g. <code>k79dnQ7BwEabPeqqXyZlvyEJ3exz4eVF</code>. These <mark>may</mark> be displayed to the user in groups of 4 for readability (such as <code>k79d nQ7B wEab Peqq XyZl vyEJ 3exz 4eVF</code>) but they <mark>must</mark> be stored and transmitted without any such padding. (TODO: is 512/192 actually stronger than 224/192 or simply 192?)</p>
+
+<p>Fingerprints serve as a globally unique identifier for a Persona. They are resilient to collision or preimage attacks but <mark>must not</mark> be considered equivalent to a public key. Messages with <i>only</i> a fingerprint attached should not be trusted for anything important. Important messages <mark>should</mark> always contain a cryptographic signature alongside the fingerprint, so that the full public key matching the fingerprint can be used to properly verify the contents. Even in the event of a successful collision attack in the future, users who already have the fingerprint's original public key stored would be unaffected.</p>
+
+<p>Malicious public keys generated with colliding fingerprints may try to claim that they are the correct Persona for the fingerprint, which could trick users who haven't received the original, genuine public key. This is not currently computationally feasible, but it could become so in the future. The only way to solve this problem is socially, i.e. by making it publically known that there is an impersonator with your fingerprint out there. A new keypair could be generated and endorsements for it received again, and then revoke the original key/fingerprint, which would alleviate the impersonator problem, but this is potentially a very difficult and time-consuming task and so cannot be considered an acceptable solution. In the event that fingerprints become easily compromised in the future, later versions of the protocol may use more secure fingerprints, and systems will need to be able to handle upgrading to these new fingerprints at that time.</p>
+
+<p>In an abundance of caution, entire public keys could be attached to messages instead of fingerprints. With some ECC-based algorithms, the full public key is fairly short (an Ed25519 public key is 64 characters in Base64). However, this practice is currently <mark>not recommended</mark> unless viable attacks on the SHA3 hash are discovered.</p>
+
+{{2:LUCID URIs}}
+
+<p>The perferred identifier for a Persona is a Uniform Resource Identifier (URI) (as per <a href="https://www.rfc-editor.org/rfc/rfc3986" target="_blank">RFC 3986</a>) with a <code>lucid</code> scheme (not yet registered with IANA). LUCID stands for Lightweight Unique Cryptographic IDentifier.</p>
+
+<p><code>lucid</code> URIs <mark>must</mark> be formatted as follows: <code class="nolig">lucid:<span class="red">&lt;version&gt;</span>:<span class="blue">&lt;fingerprint&gt;</span><span class="green">?&lt;query&gt;#&lt;fragment&gt;</span></code></p>
+
+<p><code class="red">&lt;version&gt;</code> is a string starting with "v" followed by an integer representing the LUCID URI version. Currently, only version 1 exists, written as <code>v1</code>. The "v" is case-insensitive.</p>
+
+<p><code class="blue">&lt;fingerprint&gt;</code> is a SHA3-512/192 fingerprint as described above, encoded in Base64.</p>
+
+<p><code class="green">&lt;query&gt;</code> and <code class="green">&lt;fragment&gt;</code> are a query component and fragment identifier respectively, as defined in <a href="https://www.rfc-editor.org/rfc/rfc3986" target="_blank">RFC 3986</a>. They currently have no defined use, but may be used in the future for purposes such as supplying parameters to identity queries or identifying sub-resources. Compliant implementations <mark>must</mark> accept and be able to parse LUCID URIs with query strings or fragments, though currently they are <mark>not required</mark> to do anything with that data.</p>
+
+<p>The <code>lucid:</code> scheme, <code class="red">&lt;version&gt;</code>, and <code class="blue">&lt;fingerprint&gt;</code> are <mark>required</mark> in a valid LUCID URI. <code class="green">&lt;query&gt;</code> and <code class="green">&lt;fragment&gt;</code> are <mark>optional</mark>. Examples of a valid LUCID URIs are:</p>
+
+<ul>
+	<li><code>lucid:<span class="red">v1</span>:<span class="blue">k79dnQ7BwEabPeqqXyZlvyEJ3exz4eVF</span></code></li>
+	<li><code>lucid:<span class="red">v1</span>:<span class="blue">k79dnQ7BwEabPeqqXyZlvyEJ3exz4eVF</span><span class="green">?param=true</span></code></li>
+	<li><code>lucid:<span class="red">V1</span>:<span class="blue">k79dnQ7BwEabPeqqXyZlvyEJ3exz4eVF</span><span class="green">#example</span></code></li>
+	<li><code>LUCID:<span class="red">v1</span>:<span class="blue">k79dnQ7BwEabPeqqXyZlvyEJ3exz4eVF</span><span class="green">?param=3&another=%26%3A#example</span></code></li>
+</ul>
+
+{{2:Endorsements}}
+
+<p>Version 1 (the current and only version) Endorsements consist of five pieces of information: the Endorsement algorithm version number, the fingerprint of the endorser, the trust level associated with the Endorsement, a timestamp indicating when the endorsement was made, and a cryptographic signature. The signature is generated from the concatenation of the following:
+
+<ul>
+	<li>the bytes of the target Persona's public key</li>
+	<li>a single byte representing the version number</li>
+	<li>a single signed byte representing the trust level assigned to the Endorsement (see <a href="#4.1">Trust Levels</a>)</li>
+	<li>the bytes of the endorser's fingerprint</li>
+	<li>the Endorsement timestamp, represented as a Unix epoch timestamp in seconds, as a 32-bit unsigned big-endian integer (four bytes).</li>
+</ul>
+
+<p>This stream of bytes is then signed using the endorser's private key, and the resulting signature is used for the Endorsement. Note that the type of public key used is irrelevant. As long as both the endorser and the verify use the same byte stream, the result will be the same, regardless of the format or size of the public key. Future Endorsement versions are guaranteed to contain a version number, but all other fields may be different.</p>
+
+<p>Security when obtaining the other Persona's original public key is crucial - all other verifications are based on this key. By contrast, security when issuing Endorsements is a non-issue, since they're generated cryptographically with your private key, the other Persona's public key, and the related Endorsement information, so intercepting them in transit provides no value to an attacker. Cryptographically invalid Endorsement signatures are rejected, and if the attacker wants to issue their own Endorsement, they can already do that - the weight of that endorsement depends on their own trustworthiness.</p>

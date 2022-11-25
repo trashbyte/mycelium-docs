@@ -1,0 +1,91 @@
+{{1:Message Data}}
+
+{{2:Data Types}}
+
+<p class="data-type-def"><code class="field-type">Number</code></p>
+<span>A numeric quantity. Any restrictions on the field (bounds, integers only, etc) will be in the field description.</span>
+<p class="data-type-def"><code class="field-type">String</code></p>
+<span>A string of UTF-8 characters.</span>
+<p class="data-type-def"><code class="field-type">Base64</code></p>
+<span>Raw byte data, encoded as a Base64 string.</span>
+<p class="data-type-def"><code class="field-type">Timestamp</code></p>
+<span>A date and time corresponding to an event. <mark>Must</mark> be a string in the specific <code>YYYY-MM-DDThh:mm:ssZ</code> format as defined by ISO 8601. Timestamps <mark>must</mark> always be in UTC, with the <code>Z</code> suffix.</span>
+<p class="data-type-def"><code class="field-type">Array of T</code></p>
+<span>A list of values of a certain type <code>T</code>. Arrays may be homogenous or heterogenous, and may or may not be empty.</span>
+<p class="data-type-def"><code class="field-type">Object</code></p>
+<span>A composite type consisting of a set of named fields and their values.</span>
+<p class="data-type-def"><code class="field-type">HashAlgorithm</code></p>
+<span>A supported hash algorithm, represented as a <code class="field-type">String</code>. <mark>Must</mark> be one of:</span>
+<ul class="enum-list">
+    <li class="enum-value"><code class="literal">"SHA2-512/256"</code></li>
+    <li class="enum-value"><code class="literal">"SHA2-384"</code></li>
+    <li class="enum-value"><code class="literal">"SHA3-256"</code></li>
+    <li class="enum-value"><code class="literal">"SHA3-384"</code></li>
+    <li class="enum-value"><code class="literal">"SHA3-512"</code></li>
+    <li class="enum-value"><code class="literal">"BLAKE2s-256"</code></li>
+    <li class="enum-value"><code class="literal">"BLAKE2b-384"</code></li>
+    <li class="enum-value"><code class="literal">"BLAKE2b-512"</code></li>
+</ul>
+<span>The capitalizations shown are the preferred representation, but a <code class="field-type">HashAlgorithm</code> value is case-insensitive.</span>
+<p class="data-type-def"><code class="field-type">CompressionAlgorithm</code></p>
+<span>A supported compression algorithm, represented as a <code class="field-type">String</code>. <mark>Must</mark> be one of:</span>
+<ul class="enum-list">
+    <li class="enum-value"><code class="literal">"zlib"</code></li>
+    <li class="enum-value"><code class="literal">"brotli"</code></li>
+    <li class="enum-value"><code class="literal">"lzma"</code></li>
+    <li class="enum-value"><code class="literal">"zstd"</code></li>
+</ul>
+<span>The capitalizations shown are the preferred representation, but a <code class="field-type">CompressionAlgorithm</code> value is case-insensitive.</span>
+<p class="data-type-def"><code class="field-type">SymmetricCipher</code></p>
+<span>A supported symmetric key cipher, represented as a <code class="field-type">String</code>. <mark>Must</mark> be one of:</span>
+<ul class="enum-list">
+    <li class="enum-value"><code class="literal">"AES-GCM-128"</code></li>
+    <li class="enum-value"><code class="literal">"AES-CCM-128"</code></li>
+    <li class="enum-value"><code class="literal">"ChaCha20-Poly1305"</code></li>
+</ul>
+<span>The capitalizations shown are the preferred representation, but a <code class="field-type">SymmetricCipher</code> value is case-insensitive.</span>
+<p class="data-type-def"><code class="field-type">AsymmetricCipher</code></p>
+<span>A supported asymmetric key cipher, represented as a <code class="field-type">String</code>. <mark>Must</mark> be one of:</span>
+<ul class="enum-list">
+    <li class="enum-value"><code class="literal">"RSA2048"</code></li>
+    <li class="enum-value"><code class="literal">"RSA4096"</code></li>
+    <li class="enum-value"><code class="literal">"Ed25519"</code></li>
+    <li class="enum-value"><code class="literal">"Ed448"</code></li>
+    <li class="enum-value"><code class="literal">"NISTp256"</code></li>
+    <li class="enum-value"><code class="literal">"NISTp384"</code></li>
+    <li class="enum-value"><code class="literal">"NISTp521"</code></li>
+</ul>
+<span>The capitalizations shown are the preferred representation, but a <code class="field-type">AsymmetricCipher</code> value is case-insensitive.</span>
+<p class="data-type-def"><code class="field-type">MessageType</code></p>
+<span>Denotes a type of message, represented as a <code class="field-type">String</code>. Valid options are:</span>
+<ul class="enum-list">
+    <li class="enum-value"><code class="literal">"SessionKey"</code><br><span class="desc">This message type contains an encrypted symmetric session key used for confidential data transmission.</span><br><span class="desc">Requires fields: <code class="field-name">sessionKey</code>.</span></li>
+    <li class="enum-value"><code class="literal">"Signature"</code><br><span class="desc">This message type contains a signature corresponding to a <code class="field-type">SignatureType</code>.</span><br><span class="desc">Requires fields: <code class="field-name">signature</code>.</span></li>
+    <li class="enum-value"><code class="literal">"Capabilities"</code><br><span class="desc">This message type contains information about the ciphers and algorithms supported by the sender.</span><br><span class="desc">Requires fields: <code class="field-name">capabilities</code>.</span></li>
+</ul>
+<span>The capitalizations shown are the preferred representation, but a <code class="field-type">MessageType</code> value is case-insensitive.</span>
+<p class="data-type-def"><code class="field-type">SignatureType</code></p>
+<span>Denotes a type of signature, represented as a <code class="field-type">String</code>. Valid options are:</span>
+<ul class="enum-list">
+    <li class="enum-value"><code class="literal">"BinaryDocumentSignature"</code><br><span class="desc">This means the signer owns it, created it, or certifies that it has not been modified.</span></li>
+    <li class="enum-value"><code class="literal">"TextDocumentSignature"</code><br><span class="desc">Identical to BinaryDocumentSignature except that line endings are normalized to <CR><LF> before the signature is calculated.</span></li>
+    <li class="enum-value"><code class="literal">"InlineSignature"</code><br><span class="desc">A signature verifying the BinaryData or TextData block present in the signature file. TextData is a JSON string which cannot include line breaks and escaped line endings are not normalized.</span></li>
+    <li class="enum-value"><code class="literal">"IdentityCertificationSignature"</code><br><span class="desc">The issuer of this signature offers verification of the claim that the owner of the corresponding key is who they claim to be. Trust level is specified in <code class="field-name">trustLevel</code> field.</span></li>
+    <li class="enum-value"><code class="literal">"KeyRevocationSignature"</code><br><span class="desc">The signature of a key to be revoked. A revoked key is not to be used. The signature is calculated directly on the key being revoked. Only revocation signatures made by the key being revoked should be considered valid revocation signatures.</span></li>
+    <li class="enum-value"><code class="literal">"CertificationRevocationSignature"</code><br><span></span class="desc">This signature revokes an earlier IdentityCertificationSignature. It must be issued by the same key that issued the revoked signature. The signature is computed over the same data as the certificate that it revokes, and must have a later creation date than that certificate.</li>
+</ul>
+<span>The capitalizations shown are the preferred representation, but a <code class="field-type">SignatureType</code> value is case-insensitive.</span>
+
+{{2:Endorsement Message}}
+
+<p>The canonical form for an endorsement data packet is a JSON-compatible map with the following keys and fields:</p>
+
+<pre><code>{
+    <span class="field-name">"version"</span>: <span class="blue">1</span>,
+    <span class="field-name">"trustLevel"</span>: <span class="literal">"Known"</span>,
+    <span class="field-name">"signerFingerprint"</span>: <span class="literal">"k79dnQ7BwEabPeqqXyZlvyEJ3exz4eVF"</span>,
+    <span class="field-name">"timestamp"</span>: <span class="literal">"2022-02-10T12:34:56Z"</span>,
+    <span class="field-name">"signature"</span>: <span class="literal">"TODO"</span>
+}</code></pre>
+
+<p>These values are valid for a signer public key of <code>TODO</code> and a target public key of <code>TODO</code>. You can verify it yourself. Note that these values cannot be used to verify the endorsement as is. The Base64 strings will need to be converted to raw bytes and the trust level and timestamp into a numeric value. See <a href="#2.3">Part 2.3</a> for details on calculating Endorsement signatures.</p>

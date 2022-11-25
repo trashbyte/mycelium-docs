@@ -19,3 +19,5 @@ jobs:
           **/.git*/**
           LICENSE.txt
           readme.md
+          anima/src
+          anima/src/**

@@ -1,0 +1,17 @@
+{{1:Trust System}}
+
+{{2:Trust Levels}}
+
+<p>Every Persona is able to apply a "trust level" to every other Persona they know of by way of Endorsements. Each Endorsement is associated with a trust level ranging from explicitly distrusted, to neutral, to trusted, to a special level reserved for keys you own the private key for, and therefore don't need to "trust" ownership of at all.<p>
+
+<p>Below is the list of trust levels and their associated descriptions. To the left are the numeric values for each level in parentheses, and in square brackets are possible letters or symbols used to represent them in user interfaces. These are only suggestions; implementations may use whatever abbreviated depiction they want so long as the full-word label is identical to those listed below. This system works best when assigned trust levels are honest and accurate, so give some thought to these before chosing one for someone.</p>
+
+<ul id="trust-levels">
+	<li><b>(-1) [<span class="icon">❌</span>][<span class="icon">X</span>] Untrustworthy</b>: Keys that have been revoked or that you have explicit reason to distrust.</li>
+	<li><b>(0) [<span class="icon">❔</span>][<span class="icon">N</span>] Neutral</b>: Keys you have no supporting information for, but do not distrust.</li>
+	<li><b>(1) [<span class="icon">➖</span>][<span class="icon">M</span>] Moderate</b>: Keys you have some reason to believe are legitimate.</li>
+	<li><b>(2) [<span class="icon">⭕</span>][<span class="icon">K</span>] Known</b>: Keys of people you've personally known for a while. You trust them and you have good reason to believe that this key is theirs.</li>
+	<li><b>(3) [<span class="icon">✔️</span>][<span class="icon">T</span>] Trusted</b>: Highly-trusted friends you've known for many years. You're very confident that this key is theirs.</li>
+	<li><b>(4) [<span class="icon">⭐</span>][<span class="icon">V</span>] Verified</b>: Keys that have been directly verified by you in person.</li>
+	<li><b>(5) [<span class="icon">🔑</span>][<span class="icon">S</span>] Self</b>: Keys you yourself own.</li>
+</ul>

@@ -1,0 +1,125 @@
+html, body {
+	margin: 0;
+	background: #222;
+}
+
+* {
+	color: #ddd;
+	font-family: "Noto Sans", "Open Sans", "Segoe UI", "Arial", sans-serif;
+}
+
+*.nolig {
+	font-variant-ligatures: none;
+}
+
+#main {
+	max-width: 1000px;
+	padding: 50px;
+	margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6, a {
+	color: #b6e;
+}
+a:hover { color: #ebf; }
+
+h3 {
+	margin-top: 2rem;
+}
+
+mark {
+	 font-variant: small-caps;
+	 background: unset;
+	 font-weight: bold;
+}
+
+#main-title {
+	color: #ddd;
+	font-size: 32pt;
+	text-align: center;
+}
+
+#toc-heading { color: #ddd; }
+
+ul.toc {
+	list-style: none;
+	padding-left: 0;
+}
+
+ul.toc li.depth-1 { padding-left: 0rem; }
+ul.toc li.depth-2 { padding-left: 1.5rem; }
+ul.toc li.depth-3 { padding-left: 3rem; }
+ul.toc li.depth-4 { padding-left: 4.5rem; }
+
+.field-def > span, .enum-value > span:not(.desc) {
+	font-family: "Fira Code", monospace;
+}
+
+.enum-list > li:not(:first-child) {
+	margin-top: 10px;
+}
+
+.enum-list {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+code, code * {
+	font-family: "Fira Code", monospace;
+}
+code {
+	background: #181818;
+	border-radius: 4px;
+	padding: 1px 5px;
+	display: inline-block;
+}
+pre code {
+	width: 100%;
+	padding: 10px 20px;
+	box-sizing: border-box;
+}
+code.red,   code .red,   .field-name { color: #f67; }
+code.blue,  code .blue,  .field-type { color: #58f; }
+code.green, code .green, .literal    { color: #8f5; }
+
+pre {
+	width: 100%;
+}
+
+#trust-levels {
+	list-style: none;
+	padding-left: 0;
+}
+
+#trust-levels li {
+	margin-bottom: 5px;
+}
+
+#trust-levels .icon {
+	display: inline-block;
+	width: 1.4rem;
+	text-align: center;
+}
+
+.fields-indent {
+	padding-left: 2rem;
+}
+
+.field-note {
+	color: #aaa;
+	margin-left: 10px;
+}
+
+.data-type-def {
+	margin-top: 1.5rem;
+	margin-bottom: 5px;
+}
+
+aside {
+	padding: 20px;
+	margin: 20px 10%;
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	text-align: center;
+	font-style: italic;
+}
