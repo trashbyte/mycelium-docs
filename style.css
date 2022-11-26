@@ -13,6 +13,25 @@ main {
 	right: 0;
 	margin: 75px auto;
 }
+main.wide {
+	max-width: 90%;
+}
+
+main.wide h1,
+main.wide h2,
+main.wide h3,
+main.wide p,
+main.wide li,
+main.wide aside {
+	max-width: 900px;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+main.wide aside {
+	max-width: 700px !important;
+}
 
 h1, h2, h3 { font-family: "IBM Plex Sans", "Noto Sans", "Fira Sans", "Arial", sans-serif; }
 h1 {
@@ -35,7 +54,7 @@ p, li, aside {
 
 aside {
 	padding: 20px;
-	margin: 20px 10%;
+	max-width: 700px;
 	background: rgba(255, 255, 255, 0.1);
 	border: 1px solid rgba(255, 255, 255, 0.4);
 	text-align: center;
