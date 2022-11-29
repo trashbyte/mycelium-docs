@@ -60,3 +60,10 @@ aside {
 	text-align: center;
 	font-style: italic;
 }
+
+code {
+	background: rgba(255, 255, 255, 0.1);
+	font-family: "Courier New", monospace;
+	padding: 1px 4px;
+	border-radius: 3px;
+}
