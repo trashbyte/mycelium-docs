@@ -1,1 +1,1 @@
-Publishes to https://trashbyte.io/singularity/.
+Publishes to https://mycelium.website/docs/.
